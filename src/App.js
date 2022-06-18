@@ -1,15 +1,25 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 // STAR MATCH - Starting Template
 
-const Number = props => (
-    <button className="number">{props.btnId}</button>
+const StarsDisplay = props => (
+    <>
+        {   //use utils.range to create an array [1,2,3,4,5]
+            utils.range(1, props.count).map(starId =>
+                <div key={starId} className="star" />)
+        }
+    </>
+)
+
+const PlayNumber = props => (
+    <button className="number" onClick={() => console.log("Clicked", props.btnId)} >
+        {props.btnId}</button>
 )
 
 const StarMatch = () => {
     //for the dynamic number of stars
-    const [stars, setStars] = useState(utils.random(1,9));
+    const [stars, setStars] = useState(utils.random(1, 9));
     const number = 9
     return (
         <div className="game">
@@ -18,15 +28,13 @@ const StarMatch = () => {
             </div>
             <div className="body">
                 <div className="left">
-                    {   //use utils.range to create an array [1,2,3,4,5]
-                        utils.range(1, stars).map(starId =>
-                        <div key={starId} className="star" />)
-                    }
+
+                    <StarsDisplay count={stars} />
                 </div>
                 <div className="right">
                     {   //use utils.range to create an array
-                    utils.range(1,number).map(btnIdNumber => 
-                        <Number key={btnIdNumber} btnId={btnIdNumber}/>)
+                        utils.range(1, number).map(btnIdNumber =>
+                            <PlayNumber key={btnIdNumber} btnId={btnIdNumber} />)
                     }
                 </div>
             </div>
