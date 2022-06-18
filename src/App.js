@@ -3,6 +3,10 @@ import React, {useState} from 'react';
 
 // STAR MATCH - Starting Template
 
+const Number = props => (
+    <button className="number">{props.btnId}</button>
+)
+
 const StarMatch = () => {
     //for the dynamic number of stars
     const [stars, setStars] = useState(utils.random(1,9));
@@ -21,8 +25,8 @@ const StarMatch = () => {
                 </div>
                 <div className="right">
                     {   //use utils.range to create an array
-                    utils.range(1,number).map(btnId => 
-                        <button key={btnId} className="number">{btnId}</button>)
+                    utils.range(1,number).map(btnIdNumber => 
+                        <Number key={btnIdNumber} btnId={btnIdNumber}/>)
                     }
                 </div>
             </div>
